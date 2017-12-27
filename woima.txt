@@ -1,0 +1,3 @@
+#laskutettavat meiliboxit
+SELECT id, SUBSTRING(nimi,LOCATE('@',nimi)+1,LOCATE('(',nimi)-LOCATE('@',nimi)-2) as domain, MONTH(ajalle_start) as kuukausi, nimi as laskurivi, maara, yksikko, ROUND(hinta*(100/124),2) as hinta FROM lasku_tuotteet LEFT JOIN lasku ON (ref_lasku_id = lasku.laskunumero) where YEAR(ajalle_start) = 2017 AND tunnus = 'email' AND lasku.tila = 'UUSI' ORDER BY ajalle_start
+
