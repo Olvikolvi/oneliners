@@ -14,10 +14,10 @@ if [ "${STAUS}" == "" ]; then
   CURW=$(ceph osd tree|grep ${OSD}|awk '{print $3}')
   NEWW=$(echo "${CURW} + 0.2" | bc)
   if (( $(echo "${NEWW} > ${MAXW}" | bc -l) )); then
-    echo "ceph osd crush reweight ${OSD} ${MAXW}"
+    ceph osd crush reweight ${OSD} ${MAXW}
     touch reweight2max_gained.tmp
   else
-    echo "ceph osd crush reweight ${OSD} ${NEWW}"
+    ceph osd crush reweight ${OSD} ${NEWW}
   fi
 fi
 
