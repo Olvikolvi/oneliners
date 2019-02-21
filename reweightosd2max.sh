@@ -8,7 +8,7 @@ if [ -f reweight2max_gained.tmp ]; then
   exit
 fi
 
-STAUS=$(ceph health|grep "misplaced")
+STAUS=$(ceph health|egrep "misplaced|errors")
 
 if [ "${STAUS}" == "" ]; then
   CURW=$(ceph osd tree|grep ${OSD}|awk '{print $3}')
